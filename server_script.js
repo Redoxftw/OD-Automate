@@ -1,10 +1,10 @@
 const express =require('express');
 const app = express();
 
-app.listen(3000,()=>{
-    console.log('Server is active')
-})
-app.use(express.static('public'))
+const PORT = process.env.PORT || 3030;
+
+// your code
+
 
 
 app.get('/api/olduser/auth/:registration_number/:student_name/:latitude/:longitude',async (req,res)=>{
@@ -27,3 +27,8 @@ const verifyInExcel= async(student_info)=>{
         return result
     }
 }
+
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
+  app.use(express.static('public'))
+});
