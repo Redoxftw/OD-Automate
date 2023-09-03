@@ -40,18 +40,35 @@ const options = {
   };
   let lat;
   let long;
-  function success(pos) {
-    const crd = pos.coords;
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    lat=crd.latitude;
-    long=crd.longitude;
-    
-  }
-  
-  function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
+ 
+
   
   navigator.geolocation.getCurrentPosition(success, error, options);
+  function requestLocationPermission() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          // Do something with the user's location
+          console.log("Latitude: " + position.coords.latitude);
+          console.log("Longitude: " + position.coords.longitude);
+          lat=crd.latitude;
+          long=crd.longitude;
+        },
+        function(error) {
+          if (error.code === 1) {
+            // The user denied location permission
+            alert("Please enable location services in your device settings.");
+          } else {
+            // Handle other errors
+            console.error("Error getting location:", error);
+          }
+        }
+      );
+    } else {
+      alert("Geolocation is not supported in this browser.");
+    }
+  }
+  
+  // Call the function to request location permission
+  requestLocationPermission();
   
