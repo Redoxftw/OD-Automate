@@ -42,7 +42,9 @@ const sentAuth = async () => {
   }
   else {
     document.getElementById("status-container").innerHTML = `<div class="status-container">
-    <h1 id="displaystatus" style="color: red; font-size: 16px;">ERR_MSG :${user_location_error_code}</h1>
+    <span id="displaystatus" style="color: red; font-size: 14px;">ERR_MSG : ${user_location_error_code}</span>
+    <br><br>
+    <span style="color: red;font-weight: 700;">ALERT : </span><span style="color: red;">OD will not be provided </span>
     </div>`
   };
 }
