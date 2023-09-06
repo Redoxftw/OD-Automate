@@ -21,7 +21,6 @@ const student_name = document.getElementById('nameInput');
 
 student_registration_number.addEventListener('input', () => {
   student_registration_number.value = student_registration_number.value.toUpperCase();
-  document.getElementById('buffer-icon').style.visibility = "hidden";
   document.getElementById('displaystatus').innerText = "";
 });
 
@@ -43,7 +42,6 @@ const sentAuth = async () => {
     }
   }
   else {
-    document.getElementById('buffer-icon').style.visibility = "hidden";
     document.getElementById('displaystatus').innerText = `ERR_MSG : ${user_location_error_code}`;
     document.getElementById('displaystatus').style.color = 'red';
     document.getElementById('displaystatus').style.fontSize = '16px';
@@ -51,8 +49,9 @@ const sentAuth = async () => {
 }
 
 const lodaing_message = () => {
-  document.getElementById('displaystatus').innerText = "";
-  document.getElementById('buffer-icon').style.visibility = "visible";
+  document.getElementById('displaystatus').innerHTML = `<img id="buffer-icon" src="https://www.msha.gov/sites/default/files/images/loading2.gif" style="
+  mix-blend-mode: color-burn;
+  width: 70px;">`;
   setTimeout(sentAuth, 2000);
 }
 verifyButton.addEventListener('click', lodaing_message);
