@@ -42,7 +42,7 @@ const sentAuth = async () => {
   }
   else {
     document.getElementById("status-container").innerHTML = `<div class="status-container">
-    <h1 id="displaystatus" style="color: red; height: 70px; font-size: 16px;">ERR_MSG :${user_location_error_code}</h1>
+    <h1 id="displaystatus" style="color: red; font-size: 16px;">ERR_MSG :${user_location_error_code}</h1>
     </div>`
   };
 }
@@ -58,11 +58,11 @@ verifyButton.addEventListener('click', lodaing_message);
 const modifyStatus = (result) => {
   if (result.status === 'Verified') {
     document.getElementById("status-container").innerHTML = `<div class="status-container">
-    <h1 id="displaystatus" style="color: green; height: 70px; font-size: 28px;">Verified</h1>
+    <h1 id="displaystatus" style="color: green; font-size: 28px;">Verified</h1>
     </div>`;
   } else {
     document.getElementById("status-container").innerHTML = `<div class="status-container">
-    <h1 id="displaystatus" style="color: red; height: 70px; font-size: 28px;">Not Found</h1>
+    <h1 id="displaystatus" style="color: red; font-size: 28px;">Not Found</h1>
     </div>`;
   }
 };
