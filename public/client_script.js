@@ -54,7 +54,7 @@ const lodaing_message = () => {
   mix-blend-mode: color-burn;
   width: 70px;">`;
   setTimeout(sentAuth, 2000);
-} 
+}
 verifyButton.addEventListener('click', lodaing_message);
 
 const modifyStatus = (result) => {
