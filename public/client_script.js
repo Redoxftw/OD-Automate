@@ -21,6 +21,7 @@ const student_name = document.getElementById('nameInput');
 
 student_registration_number.addEventListener('input', () => {
   student_registration_number.value = student_registration_number.value.toUpperCase();
+  document.getElementById('buffer-icon').style.visibility = "hidden";
   document.getElementById('displaystatus').innerText = "";
 });
 
@@ -42,22 +43,23 @@ const sentAuth = async () => {
     }
   }
   else {
+    document.getElementById('buffer-icon').style.visibility = "hidden";
     document.getElementById('displaystatus').innerText = `ERR_MSG : ${user_location_error_code}`;
     document.getElementById('displaystatus').style.color = 'red';
-    document.getElementById('displaystatus').style.fontSize = '18px';
-    alert('Please allow location access to continue.');
+    document.getElementById('displaystatus').style.fontSize = '16px';
   };
 }
 
 const lodaing_message = () => {
-  document.getElementById('displaystatus').style.color = 'rgb(31, 125, 233)';
-  document.getElementById('displaystatus').innerText = "Loading....";
+  document.getElementById('displaystatus').innerText = "";
+  document.getElementById('buffer-icon').style.visibility = "visible";
   setTimeout(sentAuth, 2000);
 }
 verifyButton.addEventListener('click', lodaing_message);
 
 
 const modifyStatus = (result) => {
+  document.getElementById('buffer-icon').style.visibility = "hidden";
   if (result.status === 'Verified') {
     document.getElementById('displaystatus').innerText = `${result.status}`;
     document.getElementById('displaystatus').style.color = 'green';
