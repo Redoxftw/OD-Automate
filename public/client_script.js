@@ -34,7 +34,6 @@ const verifyButton = document.getElementById('verify_button');
 const sentAuth = async () => {
   if (!user_location_error_code) {
     try {
-      document.getElementById('displaystatus').style.color = 'rgb(31, 125, 233)';
       const res = await fetch(`/api/olduser/auth/${student_registration_number.value}/${student_name.value}/${user_latitude}/${user_longitude}`);
       const result = await res.json();
       modifyStatus(result);
@@ -43,14 +42,17 @@ const sentAuth = async () => {
     }
   }
   else {
-    alert(`ERR_MSG : ${user_location_error_code}`)
-    alert('Allow location access to continue.')
+    document.getElementById('displaystatus').innerText = `ERR_MSG : ${user_location_error_code}`;
+    document.getElementById('displaystatus').style.color = 'red';
+    document.getElementById('displaystatus').style.fontSize = '18px';
+    alert('Please allow location access to continue.');
   };
 }
 
 const lodaing_message = () => {
+  document.getElementById('displaystatus').style.color = 'rgb(31, 125, 233)';
   document.getElementById('displaystatus').innerText = "Loading....";
-  setTimeout(sentAuth, 3000);
+  setTimeout(sentAuth, 2000);
 }
 verifyButton.addEventListener('click', lodaing_message);
 
