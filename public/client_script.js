@@ -16,8 +16,8 @@ function error(GeolocationPositionError) {
   console.log(user_location_error_code)
 }
 
-let student_registration_number = document.getElementById('regsitrationInput');
-let student_name = document.getElementById('nameInput');
+const student_registration_number = document.getElementById('regsitrationInput');
+const student_name = document.getElementById('nameInput');
 
 student_registration_number.addEventListener('input', () => {
   student_registration_number.value = student_registration_number.value.toUpperCase();
@@ -29,7 +29,7 @@ student_name.addEventListener('input', () => {
 });
 
 navigator.geolocation.getCurrentPosition(success, error, options);
-let verifyOldBtn = document.getElementById('old');
+const verifyButton = document.getElementById('verify_button');
 
 const sentAuth = async () => {
   if (!user_location_error_code) {
@@ -48,7 +48,7 @@ const sentAuth = async () => {
     alert('Allow location access to continue.')
   };
 }
-verifyOldBtn.addEventListener('click', sentAuth);
+verifyButton.addEventListener('click', sentAuth);
 
 const modifyStatus = (result) => {
   if (result.status === 'Verified') {
