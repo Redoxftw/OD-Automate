@@ -1,59 +1,51 @@
-let lat;
-let long;
+let user_latitude, user_longitude, user_location_error_code;
+
 const options = {
   enableHighAccuracy: true,
   timeout: 5000,
   maximumAge: 0,
 };
 
-function success(pos) {
-  const crd = pos.coords;
-
-  console.log("Your current position is:");
-  console.log(`Latitude : ${crd.latitude}`);
-  console.log(`Longitude: ${crd.longitude}`);
-  console.log(`More or less ${crd.accuracy} meters.`);
-  lat = crd.latitude;
-  long = crd.longitude;
+function success(GeolocationPosition) {
+  user_latitude = GeolocationPosition.coords.latitude
+  user_longitude = GeolocationPosition.coords.longitude
 }
 
-function error(err) {
-  alert('Allow Location Access to Site')
+function error(GeolocationPositionError) {
+  user_location_error_code = GeolocationPositionError.message;
 }
 
-navigator.geolocation.getCurrentPosition(success, error, options);
+let student_registration_number = document.getElementById('regsitrationInput');
+let student_name = document.getElementById('nameInput');
 
-let regValue = document.getElementById('regsitrationInput');
-let nameValue = document.getElementById('nameInput');
-
-regValue.addEventListener('input', () => {
-  regValue.value = regValue.value.toUpperCase();
+student_registration_number.addEventListener('input', () => {
+  student_registration_number.value = student_registration_number.value.toUpperCase();
   document.getElementById('displaystatus').innerText = "";
 });
 
-nameValue.addEventListener('input', () => {
-  nameValue.value = nameValue.value.toUpperCase();
+student_name.addEventListener('input', () => {
+  student_name.value = student_name.value.toUpperCase();
 });
 
+navigator.geolocation.getCurrentPosition(success, error, options);
 let verifyOldBtn = document.getElementById('old');
 
 const sentAuth = async () => {
-  if (lat === undefined) {
-    alert('Allow Location Access to Site')
-    navigator.geolocation.getCurrentPosition(success, error, options);
-  } else {
-
+  if (!user_location_error_code) {
     try {
-      const res = await fetch(`/api/olduser/auth/${regValue.value}/${nameValue.value}/${lat}/${long}`);
+      document.getElementById('displaystatus').innerText ="Loading....";
+      document.getElementById('displaystatus').style.color = 'rgb(31, 125, 233)';
+      const res = await fetch(`/api/olduser/auth/${student_registration_number.value}/${student_name.value}/${user_latitude}/${user_longitude}`);
       const result = await res.json();
       modifyStatus(result);
-      console.log(result);
     } catch (error) {
       console.error(error);
     }
   }
-};
-
+  else {
+    alert(`ERR_MSG : ${errore_code}`)
+  };
+}
 verifyOldBtn.addEventListener('click', sentAuth);
 
 const modifyStatus = (result) => {
@@ -65,4 +57,3 @@ const modifyStatus = (result) => {
     document.getElementById('displaystatus').style.color = 'red';
   }
 };
-
