@@ -13,6 +13,7 @@ function success(GeolocationPosition) {
 
 function error(GeolocationPositionError) {
   user_location_error_code = GeolocationPositionError.message;
+  console.log(user_location_error_code)
 }
 
 let student_registration_number = document.getElementById('regsitrationInput');
@@ -43,7 +44,8 @@ const sentAuth = async () => {
     }
   }
   else {
-    alert(`ERR_MSG : ${errore_code}`)
+    alert(`ERR_MSG : ${user_location_error_code}`)
+    alert('Allow location access to continue.')
   };
 }
 verifyOldBtn.addEventListener('click', sentAuth);
