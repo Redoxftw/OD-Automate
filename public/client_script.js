@@ -33,7 +33,7 @@ const verifyButton = document.getElementById('verify_button');
 const sentAuth = async () => {
   if (!user_location_error_code) {
     try {
-      const res = await fetch(`/api/olduser/auth/${student_registration_number.value}/${student_name.value}/${user_latitude}/${user_longitude}`);
+      const res = await fetch(`/api/auth/${student_registration_number.value}/${student_name.value}/${user_latitude}/${user_longitude}`);
       const result = await res.json();
       modifyStatus(result);
     } catch (error) {
@@ -41,6 +41,7 @@ const sentAuth = async () => {
     }
   }
   else {
+    sendErrorReport()
     document.getElementById("status-container").innerHTML = `<div class="status-container">
     <span id="displaystatus" style="color: red; font-size: 14px;">ERR_MSG : ${user_location_error_code}</span>
     <br><br>
@@ -68,3 +69,12 @@ const modifyStatus = (result) => {
     </div>`;
   }
 };
+
+const sendErrorReport=async()=>{
+  try {
+      const response=await fetch(`/api/reporterror/${student_registration_number.value}/${student_name.value}/${user_location_error_code}`);
+    }
+  catch (error) {
+    console.error(error)
+  }
+}

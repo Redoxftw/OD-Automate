@@ -3,7 +3,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3030;
 
-app.get('/api/olduser/auth/:student_registration_number/:student_name/:user_latitude/:user_longitude', async (req, res) => {
+app.get('/api/auth/:student_registration_number/:student_name/:user_latitude/:user_longitude', async (req, res) => {
     try {
         console.log(req.params)
         const student_info = req.params
@@ -13,6 +13,16 @@ app.get('/api/olduser/auth/:student_registration_number/:student_name/:user_lati
         console.error(`Error : ${error}`)
     }
 })
+
+app.get('/api/reporterror/:student_registration_number/:student_name/:ERR_MSG', async (req,res)=>{
+    try {
+        const student_info=req.params
+        console.log(student_info)
+    } catch (error) {
+        console.error(error)
+    }
+})
+
 
 const verifyInExcel = async (student_info) => {
     if (student_info.student_registration_number === '22MEI10039') {
@@ -24,7 +34,7 @@ const verifyInExcel = async (student_info) => {
     }
 }
 
-app.listen(PORT, () => {
+app.listen(3000,() => {
     console.log(`server started on port ${PORT}`);
     app.use(express.static('public'))
 });
