@@ -78,3 +78,4 @@ const sendErrorReport=async()=>{
     console.error(error)
   }
 }
+console.log('Hello')
