@@ -1,4 +1,5 @@
 import express from 'express';
+import {verifyInExcel} from '../database/database_script.mjs'
 const app = express();
 
 const PORT = process.env.PORT || 3030;
@@ -23,18 +24,7 @@ app.get('/api/reporterror/:student_registration_number/:student_name/:ERR_MSG', 
     }
 })
 
-
-const verifyInExcel = async (student_info) => {
-    if (student_info.student_registration_number === '22MEI10039') {
-       const result = 'Verified'
-        return result
-    } else {
-       const result = 'Not Found'
-        return result
-    }
-}
-
-app.listen(3000,() => {
+app.listen(PORT,() => {
     console.log(`server started on port ${PORT}`);
     app.use(express.static('public'))
 });
