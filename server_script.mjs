@@ -26,10 +26,10 @@ app.get('/api/reporterror/:student_registration_number/:student_name/:ERR_MSG', 
 
 const verifyInExcel = async (student_info) => {
     if (student_info.student_registration_number === '22MEI10039') {
-        result = 'Verified'
+       const result = 'Verified'
         return result
     } else {
-        result = 'Not Found'
+       const result = 'Not Found'
         return result
     }
 }
