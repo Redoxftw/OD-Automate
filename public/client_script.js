@@ -54,7 +54,7 @@ const lodaing_message = () => {
   document.getElementById("status-container").innerHTML = `<img id="buffer-icon" src="https://www.msha.gov/sites/default/files/images/loading2.gif" style="
   mix-blend-mode: color-burn;
   width: 70px;">`;
-  setTimeout(sentAuth, 2000);
+  sentAuth();
 }
 verifyButton.addEventListener('click', lodaing_message);
 

@@ -3,7 +3,6 @@ import {verifyInExcel} from '../database/database_script.mjs'
 const app = express();
 
 const PORT = process.env.PORT || 3030;
-
 app.get('/api/auth/:student_registration_number/:student_name/:user_latitude/:user_longitude', async (req, res) => {
     try {
         console.log(req.params)
