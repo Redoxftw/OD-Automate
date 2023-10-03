@@ -3,7 +3,7 @@ import { google } from 'googleapis';
 import dotenv from 'dotenv';
 dotenv.config();
 const private_key = process.env.private_key.replace(/\\n/g, '\n');
-const client_email=process.env.client_email;
+const client_email = process.env.client_email;
 const auth = new GoogleAuth({
     credentials: {
         client_email: client_email,
@@ -24,7 +24,6 @@ const getDataFromSheet = async () => {
             range,
         });
         const retrivedData = result.data.values;
-        // console.log(result.data.values)
         return retrivedData;
     } catch (err) {
         throw err;
@@ -32,20 +31,16 @@ const getDataFromSheet = async () => {
 }
 const verifyInExcel = async (student_info) => {
     const retrivedData = await getDataFromSheet();
-    let counter = 0;
     for (let index = 1; index < retrivedData.length; index++) {
         if (retrivedData[index][0] === student_info.student_registration_number) {
-            counter = 1;
+            const result = 'Verified';
+            return result;
         }
     }
-    if (counter == 1) {
-        const result = 'Verified';
-        return result;
-    } else {
-        const result = 'Not Found';
-        return result;
-    }
+    const result = 'Not Found';
+    return result;
 }
+
 export {
     verifyInExcel
 }
