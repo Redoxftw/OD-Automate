@@ -2,31 +2,43 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OD-Automate</title>
-  <link rel="shortcut icon" href="./automation_2103800.png" type="image/x-icon" />
-  <meta name="theme-color" content="rgb(215, 229, 242)">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OD-Automate</title>
+    <link rel="shortcut icon" href="./automation_2103800.png" type="image/x-icon" />
+    <meta name="theme-color" content="rgb(215, 229, 242)">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&family=Poppins:wght@300&display=swap"
+        rel="stylesheet">
 </head>
 
-<body>
-  <div class="main-container">
-    <div class="name-input">
-      <input type="text" id="nameInput" required="true">
-      <label for="nameInput" class="placeholder-text-name">Student Name</label>
+<body oncontextmenu=" return false ">
+    <div class="main-container">
+        <div class="name-input">
+            <input type="text" id="nameInput" required="true">
+            <label for="nameInput" class="placeholder-text-name">Student Name</label>
+        </div>
+        <div class="registration-input">
+            <input type="text" id="regsitrationInput" maxlength="10" required="true">
+            <label for="regsitrationInput" class="placeholder-text">Registration Number</label>
+        </div>
+        <div class="old-new-button">
+            <button id="verify_button">Verify</button>
+        </div>
+        <span id="not-registered">Not registered? <a href="https://qrcodescan.in/">Register Now</a></span>
     </div>
-    <div class="registration-input">
-      <input type="text" id="regsitrationInput" maxlength="10" required="true">
-      <label for="regsitrationInput" class="placeholder-text">Registration Number</label>
+    <div id="status-container" style="height: 70px;">
+        <div class="spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
-    <div class="old-new-button">
-      <button id="verify_button">Verify</button>
-    </div>
-    <span>Not registered? <a href="https://qrcodescan.in/">Register Now</a></span>
-  </div>
-  <div id="status-container" style="height: 70px;"></div>
-  <script src="./client_script.js"></script>
+
+    <script src="./client_script.js"></script>
 </body>
 
 </html>
